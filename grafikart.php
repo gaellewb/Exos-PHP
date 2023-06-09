@@ -1,3 +1,8 @@
+<?php 
+$title = "Exercices Grafikart" ;
+// $nav = "grafikart";
+require 'header.php'; ?>
+
 <?php
     // $notes = [] ;
     // $action = null ; 
@@ -69,3 +74,7 @@ $aDeviner = 150 ;
     <input type="number" name="chiffre" placeholder="entre 0 et 100" value="">
     <button type="submit">Deviner</button>
 </form> -->
+
+
+
+<?php require 'footer.php' ?>
