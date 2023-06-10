@@ -60,7 +60,6 @@ function nav_item (string $lien, string $titre): string
                </li>
                   <!-- 4eme façon. Pour éviter de devoir écrire toutes ces lignes, je crée une fonction (voir en haut) que j'ai juste à appeler ici, et dès que je veux créer un nouveau lien, je n'ai plus qu'à copier cette ligne: -->
                <?= nav_item('/formulaire.php', 'Formulaire') ; ?>
-               <?= nav_item('/ficheClient.php', 'Fiche Client') ; ?>
             </ul>
          </div>
       </div>
