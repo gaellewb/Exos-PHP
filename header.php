@@ -22,7 +22,7 @@ function nav_item (string $lien, string $titre): string
    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
    <meta name="generator" content="Hugo 0.112.5">
 
-   <!-- Je teste si $title existe ou pas, si elle n'existe pas j'affiche le else -->
+<!-- Je teste si $title existe ou pas, si elle n'existe pas j'affiche le else -->
    <title>
       <?php if (isset($title)) { echo $title; } else { echo 'Exercices de PHP';}; ?>
    </title>
@@ -40,7 +40,7 @@ function nav_item (string $lien, string $titre): string
 <header>
    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
       <div class="container-fluid">
-         <a class="navbar-brand" href="index.php">PHP</a>
+         <a class="navbar-brand" href="index.php"><img src="img/logoPHP.png" alt="petit logo PHP"></a>
          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
          </button>
@@ -58,14 +58,14 @@ function nav_item (string $lien, string $titre): string
                   <!-- 3eme façon. J'utilise la super variable $_SERVER qui va directement chercher le nom de la page grâce à SCRIPT_NAME-->
                   <a class="nav-link <?php if ($_SERVER['SCRIPT_NAME'] === '/grafikart.php'): ?> active <?php endif ?>"href="grafikart.php">Grafikart</a>
                </li>
-                  <!-- 4eme façon. Pour éviter de devoir écrire toutes ces lignes, je crée une fonction(voir en haut) que j'ai juste à appeler ici, et dès que je veux créer un nouveau lien, je n'ai plus qu'à copier cette ligne: -->
+                  <!-- 4eme façon. Pour éviter de devoir écrire toutes ces lignes, je crée une fonction (voir en haut) que j'ai juste à appeler ici, et dès que je veux créer un nouveau lien, je n'ai plus qu'à copier cette ligne: -->
                <?= nav_item('/formulaire.php', 'Formulaire') ; ?>
+               <?= nav_item('/ficheClient.php', 'Fiche Client') ; ?>
             </ul>
          </div>
       </div>
    </nav>
 </header>
 
-<!-- Begin page content -->
 <main class="flex-shrink-0">
    <div class="container">
