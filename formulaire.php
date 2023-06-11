@@ -1,6 +1,12 @@
 <?php 
     $title = 'Formulaire';
+    require_once 'functions.php' ;
+    date_default_timezone_set('Europe/Paris');
+
+    $heureActuelle = date('G:i');
     require 'header.php'; 
+    echo $heureActuelle;
+
 ?>
 
 <h1 class='text-center bg-info p-4'>Formulaire</h1>
@@ -61,6 +67,8 @@
         <input type="submit" class="btn btn-primary" value="Soumettre">
     </div>
 </form>
+
+
 
 </div>
 </div>

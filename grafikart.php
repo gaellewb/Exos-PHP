@@ -2,6 +2,7 @@
     $title = "Tutos Grafikart" ;
     require 'header.php'; 
     require_once 'functions.php' ;
+    require_once 'config.php' ;
 ?>
 
 <h1 class='text-center bg-info p-4'>Tutoriels Grafikart</h1>
@@ -116,7 +117,7 @@
 <hr>
 <div class='container mb-4 bg-light'>
     <h3 class='lead'>Tuto 6 :</h3>
-    <p>Calcul du prix de la glace.</p>
+    <p>Calcul du prix d'une glace.</p>
 </div>
 
 <?php
@@ -201,7 +202,7 @@
             <?php endforeach ?>
         </div>
     </div>
-    <button type="submit" class="btn btn-primary mt-3" >Composer ma glace</button>
+    <button type="submit" class="btn btn-primary mt-3">Composer ma glace</button>
 </form>
 
 <div class="row mt-3">
@@ -232,9 +233,58 @@
 // dump($_POST) 
 ?>
 
+<!-- Tuto 7 : -->
+<hr>
+<div class='container mb-4 bg-light'>
+    <h3 class='lead'>Tuto 7 :</h3>
+    <p>Permettre à l'utilisateur de voir si un magasin est ouvert ou non. Formulaire qui lui permet de sélectionner le jour et l'heure où il souhaite venir.</p>
+</div>
 
+<?php
+// Je change le  fuseau horaire pour avoir la bonne date
+date_default_timezone_set('Europe/Paris');
+// Je récupère l'heure d'aujourd'hui $heure
+$heure = (int)date('G');
+// Je récupère les créneaux d'aujourd'hui $creneaux
+$creneaux= CRENEAUX[date('N') - 1];
+// dump($heure);
+// dump($creneaux);
+// je vérifie avec e quel fuseau horaire il utilise
+// dump(date('e'));
+$ouvert = in_creneaux($heure, $creneaux);
+$color = 'green';
+if (!$ouvert) {
+    $color = 'red';
+}
+?>
 
-
+<div class="row">
+    <div class=" offset-md-2 col-md-4">
+        <h2>Contacter la boutique</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores maiores perspiciatis reprehenderit iusto voluptatum beatae!</p>
+    </div>
+    <div class="col-md-4">
+        <h2>Horaires d'ouverture</h2>
+        <?php if ($ouvert): ?>
+        <div class="alert alert-success">
+            Le magasin est ouvert
+        </div>
+        <?php else: ?>
+        <div class="alert alert-danger">
+            Le magasin est fermé
+        </div>
+        <?php endif ?>
+        <ul>
+            <?php foreach(JOURS as $k => $jour): ?>
+                <!-- if car N commence à 1 et $k à 0, et je traduis date en int. Je choisi de mettre en vert le jour actuel-->
+                <li <?php if ($k + 1 === (int)date('N')) : ?> style="color:<?= $color ?>" <?php endif
+                ?>>
+                    <strong><?= $jour ?></strong> :
+                    <?= creneaux_html(CRENEAUX[$k]); ?></li>
+            <?php endforeach ?>
+        </ul>
+    </div>
+</div>
 
 
 

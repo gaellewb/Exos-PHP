@@ -32,10 +32,35 @@ function dump ($variable) {
 }
 
 
+// Tuto 7
+function creneaux_html (array $creneaux) {
+    // j'utilise la fonction empty pour voir s'il y a des créneaux de renseigné, on affiche Fermé
+    if (empty($creneaux)) {
+        return 'Fermé';
+    }
+    $horaires= [] ;
+    foreach ($creneaux as $creneau) {
+        $horaires[] = "de <strong>{$creneau[0]}h</strong> / <strong>{$creneau[1]}h</strong>";
+    }
+    // implode sert à fusionner deux chaines de caractètes d'un tableau pour construire la phrase finale
+    return implode(' & ', $horaires);
+}
 
+function in_creneaux(int $heure, array $creneaux): bool
+{
+    foreach ($creneaux as $creneau) {
+        $debut = $creneau[0];
+        $fin = $creneau[1];
+        if ($heure >= $debut && $heure < $fin) {
+            return true ;
+        }
+    }
+    return false;
+}
 
-
-
+// function dateFrancais(int $dateNaiss) {
+//     $dateNaiss = date('d F Y');
+// }
 
 
 

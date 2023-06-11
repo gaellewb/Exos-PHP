@@ -175,6 +175,7 @@ require 'header.php'; ?>
 
 <?PHP
     setlocale(LC_TIME, ['fr', 'fra','fr_FR']);
+    // Je change le fuseau horaire
     date_default_timezone_set('Europe/Paris');
 
         // en anlgais
@@ -190,6 +191,9 @@ require 'header.php'; ?>
     // en français
     echo "<div class='text-center mb-5'>Français - Date, Heure : ", "<span class='fw-bold'>",
     $semaine[date('w')] ," ",date('j'),"", $mois[date('n')], date('Y'),", ",date('H:i'),"</span></div>";
+
+    // Fonctionne mais obsolète à partir de PHP 8.1.0
+    // echo strftime('%A %d %B %Y, %I:%M');
 ?>
 
 <!-- Question 9 : -->
