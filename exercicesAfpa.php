@@ -182,7 +182,6 @@ require 'header.php'; ?>
         $today = date ("l d M Y, H:i");
         echo "<div class='text-center'>Date, Heure : <span class='fw-bold'>$today</span> </div>";
 
-    $jour = getdate();
     $semaine = [" Dimanche "," Lundi "," Mardi "," Mercredi "," Jeudi ",
     " vendredi "," samedi "];
     $mois =[1=>" janvier "," février "," mars "," avril "," mai "," juin ",

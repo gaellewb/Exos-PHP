@@ -3,7 +3,7 @@
 
 <footer class="footer mt-auto py-3 bg-body-tertiary">
     <div class="container">
-        <span class="text-body-secondary">2023 | GaëlleW</span>
+        <span class="text-body-secondary">Juin 2023 | GaëlleW</span>
     </div>
 </footer>
 

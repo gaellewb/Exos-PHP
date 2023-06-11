@@ -1,12 +1,7 @@
 <?php 
     $title = 'Formulaire';
     require_once 'functions.php' ;
-    date_default_timezone_set('Europe/Paris');
-
-    $heureActuelle = date('G:i');
     require 'header.php'; 
-    echo $heureActuelle;
-
 ?>
 
 <h1 class='text-center bg-info p-4'>Formulaire</h1>
@@ -21,7 +16,7 @@
 
 <div class="container">
 <div class="row">
-<div class="col-6 offset-3 bg-info mb-5">
+<div class="col-md-6 offset-md-3 bg-info mb-5">
 
 <form method="GET" action="ficheClient.php">
     <div class="mt-3 mb-4">
@@ -54,7 +49,7 @@
             <option value="Etudiant">Etudiant</option>
             <option value="Salarié">Salarié</option>
             <option value="Auto-entrepreneur">Auo-entrepreneur</option>
-            <option value="Chômeur">Demandeur d'emploi</option>
+            <option value="Demandeur d'emploi">Demandeur d'emploi</option>
         </select>
     </div>
 
@@ -67,8 +62,6 @@
         <input type="submit" class="btn btn-primary" value="Soumettre">
     </div>
 </form>
-
-
 
 </div>
 </div>
