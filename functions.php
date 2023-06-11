@@ -63,6 +63,4 @@ function in_creneaux(int $heure, array $creneaux): bool
 // }
 
 
-
-
 ?>
