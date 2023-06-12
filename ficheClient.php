@@ -33,44 +33,60 @@
 <!-- Date naissance -->
 <?php
     date_default_timezone_set('Europe/Paris');
-    setlocale(LC_TIME, ['fr', 'fra','fr_FR']);
+    setlocale(LC_TIME, ['fr', 'fra','fr_FR']); 
     // je mets la date au même format que la dateNaiss, en fait pas la peine, par contre il faut bien l'initialiser
-    $today =  date('Y-m-d');    
-    // $today =  date('d-F-Y');    
-    // $dateNaiss = date('d F Y');
-    // dump($today);
-    // dump($dateNaiss);
-    
-    // $mois =[1=>" janvier "," février "," mars "," avril "," mai "," juin ",
-    // " juillet "," août "," septembre "," octobre "," novembre "," décembre "];
-    
+    $today =  date('d-F-Y');    
+    $dateNaiss = date('d-m-Y');
+
 // Affiche la date d'anniversaire
     if (isset($_GET['dateNaiss'])) {
         $dateNaiss = $_GET['dateNaiss'];
-        // dump($dateNaiss);
-        // echo $dateNaiss ;
-        echo "<div class='text-center mb-3 alert alert-info'><h4>Date de naissance : $dateNaiss</h4></div>";
-        // echo "<div class='text-center mb-3 alert alert-info'><h4>Date de naissance :".date('j').$mois[date('n')]. date('Y')."</h4></div>";
+
+        echo "<div class='text-center mb-3 alert alert-info'><h4>Date de naissance : ". $dateNaiss."</h4></div>";
     }  
+
+// je transforme la dateNaiss d'objet à string
+    $cleanString = preg_replace('/[^A-Za-z0-9]/', '', $dateNaiss);
+    $tableauDateNaiss = str_split($cleanString, 2);
 
 // Affiche l'âge
     $dateNaiss = new DateTime($dateNaiss);
-    // dump($dateNaiss);
-
     $date = new DateTime($today);
     $interval = $date->diff($dateNaiss);
-    // je peux rajouter à l'âge : %m mois %d jour. Et pour juste le nombre de jours %a
-    $age = $interval->format('%y') ;
-    // dump($interval) ; 
-    // dump($age) ;
+    $age = $interval->format('%y ') ;
 
 // Ajout d'un S si plus d'1 an, je mets '1' pour le changer en string   
-    if ($age >= '1') {
+    if ($age > '1') {
         $ajoutS = "s" ;
     } else $ajoutS = "" ;
-    // dump($ajoutS);
-
     echo "<div class='text-center mb-3 alert alert-primary'><h4>Age : " . $age ." an" . $ajoutS ."</h4></div>";
+
+// Calcul nombre de jours avant prochain anniv
+    $day = $tableauDateNaiss[3] ;
+    $month = $tableauDateNaiss[2] ;
+
+    function joursAvantAnniv($month, $day) {
+        $today = new DateTime('today');
+        $birthday = new DateTime("$day/$month");
+        if ($birthday < $today) {
+            $birthday->modify('+1 year');
+            
+        } return (int)$today->diff($birthday)->format('%a'); 
+        // if ($birthday === $today) {
+        //     echo 'joyeux anniversaire' ;
+        // }
+        }
+        // if ($day === '1') {
+        //     echo "<div class='text-center mb-3 alert alert-primary'><h4>Prochain anniversaire dans <br>" . joursAvantAnniv($day, $month). " jour</h4></div>";
+        // } else {
+        //     echo "<div class='text-center mb-3 alert alert-primary'><h4>Prochain anniversaire dans <br>" . joursAvantAnniv($day, $month). " jours</h4></div>";
+        // }
+
+    if ($day > '1') {
+        $plusS = "s" ;
+    } else $plusS = "" ;
+    
+    print ("<div class='text-center mb-3 alert alert-primary'><h4>Prochain anniversaire dans <br>" . joursAvantAnniv($day, $month). " jour" . $plusS . "</h4></div>"); 
 
 ?>
 

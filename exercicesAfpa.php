@@ -1,7 +1,8 @@
 <?php 
 $title = "Exercices AFPA" ;
 $nav = "exercicesAfpa";
-require 'header.php'; ?>
+require 'header.php';
+require_once 'functions.php'; ?>
 
 
 <h1 class='text-center bg-info p-4'> Exercices PHP </h1>
@@ -84,7 +85,7 @@ require 'header.php'; ?>
 </form>
 
 <?php
-    if(isset($_POST ['number1']) && isset($_POST ['number2'])){
+    if(isset($_POST ['number1']) && isset($_POST ['number2'])) {
         $number1 = $_POST['number1'] ;
         $number2 = $_POST['number2'] ;
         $addition = $number1 + $number2;
@@ -125,12 +126,12 @@ require 'header.php'; ?>
 
 <!-- Question 6 : -->
 <hr>
-<div class='container mb-4 bg-secondary'>
+<div class='container mb-4 bg-light'>
     <h3 class='lead'>Question 6 :</h3>
     <p>Créez un formulaire d'inscription avec des champs tels que le nom, l'adresse e-mail et le mot de passe. Validez les entrées côté serveur en vérifiant que tous les champs sont remplis et que l'adresse e-mail est valide (un peu de recherche à faire).</p>
 </div>
 
-<form method="POST" action="exercicesAfpa.php" class="text-center">
+<form method="GET" action="exercicesAfpa.php" class="text-center mb-3">
     <div>
         <label for="name">Nom</label>
         <input type="text" name="name" id="name">
@@ -148,23 +149,57 @@ require 'header.php'; ?>
     </div>
 </form>
 
+<?php
+// $email = '';
+    if (isset($_GET['email']) and isset($_GET['name']) and isset($_GET['motDePasse'])) {
+        $password = $_GET['motDePasse'];
+        $name = $_GET['name'];
+        $email = $_GET['email'];
+        // echo "Votre Email : " . $email."<br>";     
+        // echo "Votre nom : " . $name."<br>";                
+        // echo "Votre mot de passe : " . $password."<br>";          
+    };
+
+    function verifMail($email) {
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            echo "<div class='text-center mb-3 alert alert-success'>Email valide : " . $email ."</h4></div>";
+        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            echo "<div class='text-center mb-3 alert alert-danger'>Email non valide : " . $email . "</h4></div>";
+        }
+    };
+    if (isset($_GET['email'])) {
+        verifMail($email); 
+    }
+?> 
+
 <!-- Question 7 : -->
 <hr>
-<div class='container mb-4 bg-secondary'>
+<div class='container mb-4 bg-light'>
     <h3 class='lead'>Question 7 :</h3>
     <p>Créez une fonction PHP qui prend une chaîne de caractères en paramètre et retourne le nombre de mots qu'elle contient. Testez ensuite la fonction avec différentes chaînes et affichez le résultat.</p>
 </div>
 
-<form method="POST" action="exercicesAfpa.php" class="text-center">
+<form method="POST" action="exercicesAfpa.php" class="text-center mb-3">
     <div class="form-group">
         <label for="phrase">Ecrivez une phrase :</label>
-        <input type="text" class="form-control" name="phrase" id="phrase" require>
+        <input type="text" class="form-control" name="chaine" id="chaine" require>
     </div>
     <div class="mt-2">
         <input type="submit" class="btn btn-primary" value="Combien de mots ?">
     </div>
 </form>
 
+<?php
+    function comptage () {
+        if (isset($_POST['chaine'])) {
+            $string = $_POST['chaine'];
+            $countWord =  str_word_count($string, '0');
+            echo "<div class='text-center mb-3 alert alert-success'><h4>La phrase contient ".$countWord . " mots</h4></div>" ;
+        }
+    };
+
+    comptage();
+?>
 
 <!-- Question 8 : -->
 <hr>
@@ -215,6 +250,23 @@ require 'header.php'; ?>
         <input type="submit" class="btn btn-primary"  value="Connexion">
     </div>
 </form>
+
+<?php
+session_start();
+// Vérif si une session est déjà créée
+    if (isset($_SESSION['session'])) {
+        $id = $_SESSION['session'];
+        $mdp = $_SESSION['session'];
+} 
+// sinon j'intègre $id et $mdp
+    elseif (isset($_POST['utilisateur']) and isset($_POST['motDePasse2'])) {
+        $id = $_POST['utilisateur'];
+        $mdp = $_POST['motDePasse2'];
+        $_SESSION['session'] = $id;
+        $_SESSION['session'] = $mdp; 
+        echo 'bienvenue' . $id ;
+    };
+?>
 
 <!-- Question 10 : -->
 <hr>

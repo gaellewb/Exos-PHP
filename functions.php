@@ -1,4 +1,11 @@
 <?php
+// Fonction qui permet de voir le var_dump
+function dump ($variable) {
+    echo '<pre>';
+    var_dump($variable);
+    echo '</pre>' ;
+}
+
 function checkbox (string $name, string $value, array $data) : string
 {
     $attributes = '';
@@ -25,13 +32,6 @@ function radio (string $name, string $value, array $data) : string
 HTML;
 }
 
-function dump ($variable) {
-    echo '<pre>';
-    var_dump($variable);
-    echo '</pre>' ;
-}
-
-
 // Tuto 7
 function creneaux_html (array $creneaux) {
     // j'utilise la fonction empty pour voir s'il y a des créneaux de renseigné, on affiche Fermé
@@ -57,10 +57,5 @@ function in_creneaux(int $heure, array $creneaux): bool
     }
     return false;
 }
-
-// function dateFrancais(int $dateNaiss) {
-//     $dateNaiss = date('d F Y');
-// }
-
 
 ?>
