@@ -44,7 +44,7 @@
 
         echo "<div class='text-center mb-3 alert alert-info'><h4>Date de naissance : ". $dateNaiss."</h4></div>";
     }  
-
+    
 // je transforme la dateNaiss d'objet à string
     $cleanString = preg_replace('/[^A-Za-z0-9]/', '', $dateNaiss);
     $tableauDateNaiss = str_split($cleanString, 2);
@@ -59,35 +59,29 @@
     if ($age > '1') {
         $ajoutS = "s" ;
     } else $ajoutS = "" ;
+
     echo "<div class='text-center mb-3 alert alert-primary'><h4>Age : " . $age ." an" . $ajoutS ."</h4></div>";
 
 // Calcul nombre de jours avant prochain anniv
     $day = $tableauDateNaiss[3] ;
     $month = $tableauDateNaiss[2] ;
-
+    
     function joursAvantAnniv($month, $day) {
         $today = new DateTime('today');
         $birthday = new DateTime("$day/$month");
-        if ($birthday < $today) {
-            $birthday->modify('+1 year');
-            
-        } return (int)$today->diff($birthday)->format('%a'); 
-        // if ($birthday === $today) {
-        //     echo 'joyeux anniversaire' ;
-        // }
+            if ($birthday < $today) {
+                $birthday->modify('+1 year');
+            }
+                return (int)$today->diff($birthday)->format('%a') ;
         }
-        // if ($day === '1') {
-        //     echo "<div class='text-center mb-3 alert alert-primary'><h4>Prochain anniversaire dans <br>" . joursAvantAnniv($day, $month). " jour</h4></div>";
-        // } else {
-        //     echo "<div class='text-center mb-3 alert alert-primary'><h4>Prochain anniversaire dans <br>" . joursAvantAnniv($day, $month). " jours</h4></div>";
-        // }
-
-    if ($day > '1') {
+    
+    if (joursAvantAnniv($day, $month) > '1') {
         $plusS = "s" ;
     } else $plusS = "" ;
-    
-    print ("<div class='text-center mb-3 alert alert-primary'><h4>Prochain anniversaire dans <br>" . joursAvantAnniv($day, $month). " jour" . $plusS . "</h4></div>"); 
 
+    if (joursAvantAnniv($day, $month) == '0') {
+        echo "<div class='text-center mb-3 alert alert-danger'><h4>JOYEUX ANNIVERSAIRE</h4></div>";
+    } else echo  "<div class='text-center mb-3 alert alert-danger'><h4>Prochain anniversaire dans <br>" . joursAvantAnniv($day, $month). " jour" . $plusS . "</h4></div>" ; 
 ?>
 
 <!-- Ajout image -->
@@ -107,6 +101,10 @@
         }
     }
 ?>
+
+<div class="mt-5 mb-3">
+    <a href="formulaire.php" class="btn btn-primary">Retour au formulaire</a>
+</div>
 
 </div>
 </div>
