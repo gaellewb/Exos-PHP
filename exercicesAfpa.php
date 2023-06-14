@@ -4,7 +4,6 @@ $nav = "exercicesAfpa";
 require 'header.php';
 require_once 'functions.php'; ?>
 
-
 <h1 class='text-center bg-info p-4'> Exercices PHP </h1>
 
 <!-- Question 1 : -->
@@ -150,14 +149,10 @@ require_once 'functions.php'; ?>
 </form>
 
 <?php
-// $email = '';
     if (isset($_GET['email']) and isset($_GET['name']) and isset($_GET['motDePasse'])) {
         $password = $_GET['motDePasse'];
         $name = $_GET['name'];
-        $email = $_GET['email'];
-        // echo "Votre Email : " . $email."<br>";     
-        // echo "Votre nom : " . $name."<br>";                
-        // echo "Votre mot de passe : " . $password."<br>";          
+        $email = $_GET['email'];        
     };
 
     function verifMail($email) {
@@ -193,11 +188,11 @@ require_once 'functions.php'; ?>
     function comptage () {
         if (isset($_POST['chaine'])) {
             $string = $_POST['chaine'];
+            // pas obligé de mettre le 0, il est par défaut; sinon il y a aussi 1 ou 2 qui retourne d'autres choses
             $countWord =  str_word_count($string, '0');
-            echo "<div class='text-center mb-3 alert alert-success'><h4>La phrase contient ".$countWord . " mots</h4></div>" ;
+            echo "<div class='text-center mb-3 alert alert-success'><h4>La phrase<br>'". $string."'<br>contient ".$countWord . " mots</h4></div>" ;
         }
     };
-
     comptage();
 ?>
 
@@ -223,8 +218,19 @@ require_once 'functions.php'; ?>
     " juillet "," août "," septembre "," octobre "," novembre "," décembre "];
 
     // en français
-    echo "<div class='text-center mb-5'>Français - Date, Heure : ", "<span class='fw-bold'>",
+    echo "<div class='text-center mb-5'>Date, Heure : ", "<span class='fw-bold'>",
     $semaine[date('w')] ," ",date('j'),"", $mois[date('n')], date('Y'),", ",date('H:i'),"</span></div>";
+
+    // Ne fonctionne pas pour moi !
+    // $formatter = new IntlDateFormatter(
+    //     'fr_FR',
+    //     IntlDateFormatter::FULL,
+    //     IntlDateFormatter::SHORT,
+    //     'Europe/Paris',
+    //     IntlDateFormatter::GREGORIAN,
+    //     "EEEE d MMMM Y, HH:mm"
+    // );
+    // echo $formatter->format(new DateTime()) ;
 
     // Fonctionne mais obsolète à partir de PHP 8.1.0
     // echo strftime('%A %d %B %Y, %I:%M');
@@ -252,30 +258,73 @@ require_once 'functions.php'; ?>
 </form>
 
 <?php
-session_start();
+// VERSION DAVID
+// session_start();
+// if ($_SERVER["REQUEST_METHOD"] === "POST") {
+//     $identifiantAttendu = "admin";
+//     $motDePasseAttendu = "password";
+
+//     $identifiant = $_POST["utilisateur"];
+//     $motDePasse = $_POST["motDePasse2"];
+
+//     if ($identifiant === $identifiantAttendu && $motDePasse2 === $motDePasseAttendu) {
+//         $_SESSION["utilisateur"] = $identifiant;
+//         } else {
+//         echo "Identifiant ou mot de passe incorrect.";
+//         }
+// }    
+//     // Vérification de la session pour afficher le message de bienvenue
+//     if (isset($_SESSION["utilisateur"])) {
+//     $identifiantConnecte = $_SESSION["utilisateur"];
+//     echo "Bienvenue, ".$identifiantConnecte." ! Vous êtes connecté.";
+//     }
+
+// VERSION MAXIME
 // Vérif si une session est déjà créée
-    if (isset($_SESSION['session'])) {
-        $id = $_SESSION['session'];
-        $mdp = $_SESSION['session'];
-} 
+//     if (isset($_SESSION['session'])) {
+//         $id = $_SESSION['session'];
+//         $mdp = $_SESSION['session'];
+// } 
 // sinon j'intègre $id et $mdp
-    elseif (isset($_POST['utilisateur']) and isset($_POST['motDePasse2'])) {
-        $id = $_POST['utilisateur'];
-        $mdp = $_POST['motDePasse2'];
-        $_SESSION['session'] = $id;
-        $_SESSION['session'] = $mdp; 
-        echo 'bienvenue' . $id ;
-    };
+    // elseif (isset($_POST['utilisateur']) and isset($_POST['motDePasse2'])) {
+    //     $id = $_POST['utilisateur'];
+    //     $mdp = $_POST['motDePasse2'];
+    //     $_SESSION['session'] = $id;
+    //     $_SESSION['session'] = $mdp; 
+    //     echo 'bienvenue' . $id ;
+    // };
 ?>
 
 <!-- Question 10 : -->
 <hr>
-<div class='container mb-4 bg-secondary'>
+<div class='container mb-4 bg-light'>
     <h3 class='lead'>Question 10 :</h3>
     <p>Créez un fichier CSV contenant une liste de noms et d'adresses e-mail. À l'aide de PHP, lisez le contenu du fichier CSV et affichez-le sous forme de tableau HTML.</p>
 </div>
 
+<!-- Version DAVID -->
+<?php
+// Chemin vers le fichier CSV
+$cheminFichierCSV = "C:\Users\Gaëlle\Desktop\dev\Exos-PHP\hCSV_Test.csv";
 
+// Lire le contenu du fichier CSV
+$contenuCSV = file_get_contents($cheminFichierCSV);
+
+// Convertir le contenu CSV en tableau
+$tableauCSV = explode("\n", $contenuCSV);
+
+// Afficher le tableau sous forme de tableau HTML
+echo "<table class='table'><thead><tr><th scope='col'></th></tr></thead><tbody>";
+foreach ($tableauCSV as $ligne) {
+echo "<tr>";
+$colonnes = explode(",", $ligne);
+foreach ($colonnes as $colonne) {
+echo "<td class='p-2'>" . $colonne . "</td>";
+}
+echo "</tr>";
+}
+echo "</tbody></table>";
+?>
 
 <!-- Bootsrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>

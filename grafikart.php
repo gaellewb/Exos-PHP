@@ -67,7 +67,7 @@
         </form>
 
 <?php
-
+// $phrase='phrase2';
 // if (isset($GET ['phrase2'])) {
 //     $phrase2 = $GET ['phrase2'] ;
 //     foreach ($insultes as $insulte) {
@@ -78,9 +78,23 @@
 //     // Je remplace l'insulte par les *
 //     $phrase2 = str_replace($insulte, $replace, $phrase2);
 //     echo "<div class='text-center mb-3 alert alert-warning'><h4>$phrase2</h4></div>";
-//     }       
+// }       
 // }
-    // echo $phrase2;
+    $asterisque =[];
+    $insultes =['merde', 'con', 'putain', 'connard'];
+
+    if (isset($GET ['phrase2'])) {
+        $phrase2 = $GET ['phrase2'] ;
+        foreach ($insultes as $insulte) {
+            $asterisque[] = str_repeat('*', strlen($insulte));
+        }
+        $phrase2 = str_replace($insultes, $asterisque, $phrase2);
+    }       
+    if (isset($GET ['phrase2'])) {
+    echo "<div class='text-center mb-3 alert alert-warning'><h4>".$phrase2."</h4></div>";
+    }
+
+
 
 ?>
 
@@ -237,7 +251,7 @@
 <hr>
 <div class='container mb-4 bg-light'>
     <h3 class='lead'>Tuto 7 :</h3>
-    <p>Permettre à l'utilisateur de voir si un magasin est ouvert ou non. Formulaire qui lui permet de sélectionner le jour et l'heure où il souhaite venir.</p>
+    <p>Permettre à l'utilisateur de voir si un magasin est ouvert ou non.</p>
 </div>
 
 <?php
