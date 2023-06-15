@@ -41,7 +41,6 @@
 // Affiche la date d'anniversaire
     if (isset($_GET['dateNaiss'])) {
         $dateNaiss = $_GET['dateNaiss'];
-
         echo "<div class='text-center mb-3 alert alert-info'><h4>Date de naissance : ". $dateNaiss."</h4></div>";
     }  
     

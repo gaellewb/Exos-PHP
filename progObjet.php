@@ -1,6 +1,9 @@
 <?php 
     $title = 'Programmation Orientée Objet';
     require_once 'POO/Circle.php';
+    require_once 'POO/Car.php';
+    require_once 'POO/Rectangle.php';
+    require_once 'POO/Person.php';
     require 'functions.php' ;
     require 'header.php'; 
 ?>
@@ -37,16 +40,26 @@
     
 <?php
 // Instanciation : création d'un objet $cercle_1
+        // if (isset($_GET ['radiusUtile'])) {
+        //     $radiusUtile = (int)$_GET['radiusUtile'];
+        // };
     $cercle_1 = new Circle(); 
     $cercle_1 -> setRadius (
-        // if (isset($_GET ['radiusUtile'])) {
-        $radiusUtile = (int)$_GET['radiusUtile']);
-    // }) ;
+        // if (isset($_GET['radiusUtile'])) {
+            $radiusUtile = (int)$_GET['radiusUtile']);
+        // });
     $cercle_1 -> aireCercle();
     $cercle_1 -> perimetreCercle();
+        //     if (isset($_GET ['radiusUtile'])) {
+        //     $radiusUtile = (int)$_GET['radiusUtile'];
+        // };
     // dump($cercle_1);
 ?>
+<!-- Pas réussi à mettre un round 2 ET à mettre le isset pour enlever le warning -->
 
+<div class='text-center mb-3 alert alert-success'>
+    <h5>Rayon = <?= $radiusUtile ?></h5>
+</div>
 <div class="row">
     <div class="col-6">
         <div class='text-center mb-3 alert alert-success'>
@@ -78,11 +91,9 @@
 </div>
 
 
-
-
 <!-- Question 3 : -->
 <hr>
-<div class='container mb-4 bg-secondary'>
+<div class='container mb-4 bg-light'>
     <h3 class='lead'>Exercice 3 :</h3>
     <p>Créez une classe "Rectangle" avec les propriétés privées "width" et "height", ainsi que les méthodes suivantes : </p>
     <ul>
@@ -98,12 +109,53 @@
     </ul>
 </div>
 
+<form action="progObjet.php" method="POST">
+    <div class='text-center mb-3'>
+        <label for="height" name="heightUtil" class="mb-2">Rentrez une longueur :</label>
+        <input type="text" name="heightUtil">
+    </div>
+    <div class='text-center mb-3'>
+        <label for="width" name="widthUtil" class="mb-2">Rentrez une largeur :</label>
+        <input type="text" name="widthUtil">
+    </div>
+    <div class='text-center mb-3'>
+        <input type="submit" class="btn btn-primary" value="CALCUL">
+    </div> 
+</form>
+
+<?php
+//Instanciation = création d'un objet
+$rectangle_1 = new Rectangle();
+$rectangle_1 -> setHeight($heightUtil=(int)$_POST['heightUtil']); 
+$rectangle_1 -> setWidth($widthUtil=(int)$_POST['widthUtil']); 
+$rectangle_1 -> surface(); 
+$rectangle_1 -> perimRectangle();
+// dump($rectangle_1);
+?>
+
+<!-- Pas réussi à mettre un round 2 ET à mettre le isset pour enlever le warning -->
+
+<div class='text-center mb-3 alert alert-success'>
+    <h5>Longueur = <?= $heightUtil ?> et Largeur = <?= $widthUtil ?></h5>
+</div>
+<div class="row">
+    <div class="col-6">
+        <div class='text-center mb-3 alert alert-success'>
+            <h5><?= "Surface = ".$rectangle_1 -> surface($widthUtil, $heightUtil) ?></h5>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class='text-center mb-3 alert alert-success'>
+            <h5><?= "Périmètre du cercle = ".$rectangle_1 -> perimRectangle($widthUtil, $heightUtil) ?></h5>
+        </div>
+    </div>
+</div>
 
 
 <!-- Question 4 : -->
 <hr>
 <div class='container mb-4 bg-secondary'>
-    <h3 class='lead'>Exercice 3 :</h3>
+    <h3 class='lead'>Exercice 4 :</h3>
     <p>Créez un fichier nommé Person.php contenant la classe Person avec les propriétés privées "name" et "age", ainsi que les méthodes suivantes : </p>
     <ul>
         <li>

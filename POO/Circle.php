@@ -5,8 +5,8 @@ class Circle {
 //Création de l'attribut ou propriété
     private $radius ;
 
+// SETTER et GETTER : méthodes d'objet, elles agient uniquement sur l'objet courant(désigné par $this)
 // Mutateur ou setter pour affecter une valeur à la propriété
-// SETTER et GETTER : méthodes d'objet, elle agit uniquement sur l'objet courant(désigné par $this)
     public function setRadius($radius){
         $this -> radius = $radius;
     }
