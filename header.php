@@ -51,15 +51,16 @@ function nav_item (string $lien, string $titre): string
                   <a class="nav-link <?php if ($nav === 'index') { echo "active";}?>" href="index.php">Accueil</a>
                </li>
                <li class="nav-item">
-                  <!-- 2eme façon d'écrire le if. on enlève les accolades, on : et endif et on ajoute du HTML au milieu -->
+                  <!-- 2eme façon d'écrire le if. on enlève les accolades, on met : et endif et on ajoute du HTML au milieu -->
                   <a class="nav-link <?php if ($nav === 'exercicesAfpa'): ?> active <?php endif ?>" href="exercicesAfpa.php">Exercices Afpa</a>
                </li>
                <li class="nav-item">
                   <!-- 3eme façon. J'utilise la super variable $_SERVER qui va directement chercher le nom de la page grâce à SCRIPT_NAME-->
-                  <a class="nav-link <?php if ($_SERVER['SCRIPT_NAME'] === '/grafikart.php'): ?> active <?php endif ?>"href="grafikart.php">Grafikart</a>
+                  <a class="nav-link <?php if ($_SERVER['SCRIPT_NAME'] === '/grafikart.php'): ?> active <?php endif ?>" href="grafikart.php">Grafikart</a>
                </li>
                   <!-- 4eme façon. Pour éviter de devoir écrire toutes ces lignes, je crée une fonction (voir en haut) que j'ai juste à appeler ici, et dès que je veux créer un nouveau lien, je n'ai plus qu'à copier cette ligne: -->
                <?= nav_item('/formulaire.php', 'Formulaire') ; ?>
+               <?= nav_item('/progObjet.php', 'POO') ; ?>
             </ul>
          </div>
       </div>

@@ -1,8 +1,9 @@
 <?php 
 $title = "Exercices AFPA" ;
 $nav = "exercicesAfpa";
+require_once 'functions.php'; 
 require 'header.php';
-require_once 'functions.php'; ?>
+?>
 
 <h1 class='text-center bg-info p-4'> Exercices PHP </h1>
 
@@ -280,12 +281,12 @@ require_once 'functions.php'; ?>
 //     }
 
 // je crois que ça ne marche pas trop
-Vérif si une session est déjà créée
+// Vérif si une session est déjà créée
     if (isset($_SESSION['session'])) {
         $id = $_SESSION['session'];
         $mdp = $_SESSION['session'];
 } 
-sinon j'intègre $id et $mdp
+// sinon j'intègre $id et $mdp
     elseif (isset($_POST['utilisateur']) and isset($_POST['motDePasse2'])) {
         $id = $_POST['utilisateur'];
         $mdp = $_POST['motDePasse2'];
