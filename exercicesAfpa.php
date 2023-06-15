@@ -221,7 +221,7 @@ require_once 'functions.php'; ?>
     echo "<div class='text-center mb-5'>Date, Heure : ", "<span class='fw-bold'>",
     $semaine[date('w')] ," ",date('j'),"", $mois[date('n')], date('Y'),", ",date('H:i'),"</span></div>";
 
-    // Ne fonctionne pas pour moi !
+    // VERSION MAGALI : Ne fonctionne pas pour moi !
     // $formatter = new IntlDateFormatter(
     //     'fr_FR',
     //     IntlDateFormatter::FULL,
@@ -279,20 +279,20 @@ require_once 'functions.php'; ?>
 //     echo "Bienvenue, ".$identifiantConnecte." ! Vous êtes connecté.";
 //     }
 
-// VERSION MAXIME
-// Vérif si une session est déjà créée
-//     if (isset($_SESSION['session'])) {
-//         $id = $_SESSION['session'];
-//         $mdp = $_SESSION['session'];
-// } 
-// sinon j'intègre $id et $mdp
-    // elseif (isset($_POST['utilisateur']) and isset($_POST['motDePasse2'])) {
-    //     $id = $_POST['utilisateur'];
-    //     $mdp = $_POST['motDePasse2'];
-    //     $_SESSION['session'] = $id;
-    //     $_SESSION['session'] = $mdp; 
-    //     echo 'bienvenue' . $id ;
-    // };
+// je crois que ça ne marche pas trop
+Vérif si une session est déjà créée
+    if (isset($_SESSION['session'])) {
+        $id = $_SESSION['session'];
+        $mdp = $_SESSION['session'];
+} 
+sinon j'intègre $id et $mdp
+    elseif (isset($_POST['utilisateur']) and isset($_POST['motDePasse2'])) {
+        $id = $_POST['utilisateur'];
+        $mdp = $_POST['motDePasse2'];
+        $_SESSION['session'] = $id;
+        $_SESSION['session'] = $mdp; 
+        echo 'bienvenue' . $id ;
+    };
 ?>
 
 <!-- Question 10 : -->
@@ -302,7 +302,7 @@ require_once 'functions.php'; ?>
     <p>Créez un fichier CSV contenant une liste de noms et d'adresses e-mail. À l'aide de PHP, lisez le contenu du fichier CSV et affichez-le sous forme de tableau HTML.</p>
 </div>
 
-<!-- Version DAVID -->
+<!-- Version DAVID : je n'ai pas réussi cet exercice -->
 <?php
 // Chemin vers le fichier CSV
 $cheminFichierCSV = "C:\Users\Gaëlle\Desktop\dev\Exos-PHP\hCSV_Test.csv";
