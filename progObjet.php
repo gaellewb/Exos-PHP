@@ -29,7 +29,7 @@
 
 <form action="progObjet.php" method="GET">
     <div class='text-center mb-3'>
-        <label for="radius" name="radiusUtile" class="mb-2">Rentrez un rayon pour connaître l'air et le périmètre du cercle :</label>
+        <label for="radius" name="radiusUtile" class="mb-2"><h4>Cercle - Rentrez un rayon :</h4></label>
     <br>
     <input type="text" name="radiusUtile" >
     </div>
@@ -40,23 +40,19 @@
     
 <?php
 // Instanciation : création d'un objet $cercle_1
-        // if (isset($_GET ['radiusUtile'])) {
-        //     $radiusUtile = (int)$_GET['radiusUtile'];
-        // };
+if (isset($_GET ['radiusUtile'])) {
+    $radiusUtile = (int)$_GET['radiusUtile'];      
     $cercle_1 = new Circle(); 
-    $cercle_1 -> setRadius (
-        // if (isset($_GET['radiusUtile'])) {
-            $radiusUtile = (int)$_GET['radiusUtile']);
-        // });
+    $cercle_1 -> setRadius ($radiusUtile = (int)$_GET['radiusUtile']);
     $cercle_1 -> aireCercle();
     $cercle_1 -> perimetreCercle();
-        //     if (isset($_GET ['radiusUtile'])) {
-        //     $radiusUtile = (int)$_GET['radiusUtile'];
-        // };
     // dump($cercle_1);
+};
 ?>
-<!-- Pas réussi à mettre un round 2 ET à mettre le isset pour enlever le warning -->
 
+<?php
+        if (isset($_GET ['radiusUtile'])) {
+?>
 <div class='text-center mb-3 alert alert-success'>
     <h5>Rayon = <?= $radiusUtile ?></h5>
 </div>
@@ -72,11 +68,12 @@
         </div>
     </div>
 </div>
+<?php } ?>
 
 
 <!-- Question 2 : -->
 <hr>
-<div class='container mb-4 bg-secondary'>
+<div class='container mb-4 bg-light'>
     <h3 class='lead'>Exercice 2 :</h3>
     <p>Créez une classe "Car" avec les propriétés privées "brand" et "model", ainsi que les méthodes suivantes :</p>
     <ul>
@@ -89,6 +86,134 @@
     </ul>
 </p>
 </div>
+
+
+<form action="progObjet.php" method="POST">
+    <div class="text-center mb-3">
+        <label for="choixVoiture" name="choice"><h4>Choisissez votre véhicule :</h4></label>
+    </div>
+    <div class="text-center mb-3">
+        <input type="submit" name="choice1" class="btn btn-warning m-2" value="Véhicule n°1">
+        <input type="submit" name="choice2" class="btn btn-warning m-2" value="Véhicule n°2">
+        <input type="submit" name="choice3" class="btn btn-warning m-2" value="Véhicule n°3">
+        <input type="submit" name="choice4" class="btn btn-warning m-2" value="Véhicule n°4">
+        <input type="submit" name="choice5" class="btn btn-warning m-2" value="Véhicule n°5">
+        <input type="submit" name="choice6" class="btn btn-warning m-2" value="Véhicule n°6">
+    </div>
+    
+</form>
+
+<?php
+$car_1 = new Car();
+$car_1 -> setBrand('Renault');
+$car_1 -> setModel('Clio');
+
+$car_2 = new Car();
+$car_2 -> setBrand('Renault');
+$car_2 -> setModel('Twingo');
+
+$car_3 = new Car();
+$car_3 -> setBrand('Peugeot');
+$car_3 -> setModel('3008');
+
+$car_4 = new Car();
+$car_4 -> setBrand('Volkswagen');
+$car_4 -> setModel('Polo');
+
+$car_5 = new Car();
+$car_5 -> setBrand('Volkswagen');
+$car_5 -> setModel('Tiguan');
+
+$car_6 = new Car();
+$car_6 -> setBrand('Citroën');
+$car_6 -> setModel('C3');
+?>
+
+<?php
+if(isset($_POST ['choice1'])) {
+?>
+    <div class="card text-center m-5" style="width: 18rem;">
+        <div class="card-header">
+            <h5 class="card-title">Véhicule n°1</h5>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title"><?= $car_1 -> getBrand() ?></h5>
+            <p class="card-text"><?= $car_1 -> getModel() ?></p>
+        </div>
+    </div>
+<?php } ?>
+
+<?php
+if(isset($_POST ['choice2'])) {
+?>
+    <div class="card text-center m-5" style="width: 18rem;">
+        <div class="card-header">
+            <h5 class="card-title">Véhicule n°2</h5>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title"><?= $car_2 -> getBrand() ?></h5>
+            <p class="card-text"><?= $car_2 -> getModel() ?></p>
+        </div>
+    </div>
+<?php } ?>
+
+<?php
+if(isset($_POST ['choice3'])) {
+?>
+    <div class="card text-center m-5" style="width: 18rem;">
+        <div class="card-header">
+            <h5 class="card-title">Véhicule n°3</h5>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title"><?= $car_3 -> getBrand() ?></h5>
+            <p class="card-text"><?= $car_3 -> getModel() ?></p>
+        </div>
+    </div>
+<?php } ?>
+
+<?php
+if(isset($_POST ['choice4'])) {
+?>
+    <div class="card text-center m-5" style="width: 18rem;">
+        <div class="card-header">
+            <h5 class="card-title">Véhicule n°4</h5>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title"><?= $car_4 -> getBrand() ?></h5>
+            <p class="card-text"><?= $car_4 -> getModel() ?></p>
+        </div>
+    </div>
+<?php } ?>
+
+<?php
+if(isset($_POST ['choice5'])) {
+?>
+    <div class="card text-center m-5" style="width: 18rem;">
+        <div class="card-header">
+            <h5 class="card-title">Véhicule n°5</h5>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title"><?= $car_5 -> getBrand() ?></h5>
+            <p class="card-text"><?= $car_5 -> getModel() ?></p>
+        </div>
+    </div>
+<?php } ?>
+
+<?php
+if(isset($_POST ['choice6'])) {
+?>
+    <div class="card text-center m-5" style="width: 18rem;">
+        <div class="card-header">
+            <h5 class="card-title">Véhicule n°6</h5>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title"><?= $car_6 -> getBrand() ?></h5>
+            <p class="card-text"><?= $car_6 -> getModel() ?></p>
+        </div>
+    </div>
+<?php } ?>
+
+
 
 
 <!-- Question 3 : -->
@@ -111,11 +236,11 @@
 
 <form action="progObjet.php" method="POST">
     <div class='text-center mb-3'>
-        <label for="height" name="heightUtil" class="mb-2">Rentrez une longueur :</label>
+        <label for="height" name="heightUtil" class="mb-2"><h5>Longueur :</h5></label>
         <input type="text" name="heightUtil">
     </div>
     <div class='text-center mb-3'>
-        <label for="width" name="widthUtil" class="mb-2">Rentrez une largeur :</label>
+        <label for="width" name="widthUtil" class="mb-2"><h5>Largeur :</h5></label>
         <input type="text" name="widthUtil">
     </div>
     <div class='text-center mb-3'>
@@ -124,6 +249,7 @@
 </form>
 
 <?php
+if(isset($_POST ['widthUtil'])) {
 //Instanciation = création d'un objet
 $rectangle_1 = new Rectangle();
 $rectangle_1 -> setHeight($heightUtil=(int)$_POST['heightUtil']); 
@@ -131,12 +257,15 @@ $rectangle_1 -> setWidth($widthUtil=(int)$_POST['widthUtil']);
 $rectangle_1 -> surface(); 
 $rectangle_1 -> perimRectangle();
 // dump($rectangle_1);
+}
 ?>
 
-<!-- Pas réussi à mettre un round 2 ET à mettre le isset pour enlever le warning -->
-
+<!-- Pas réussi à mettre le isset pour enlever le warning -->
+<?php
+if(isset($_POST ['widthUtil'])) {
+?>
 <div class='text-center mb-3 alert alert-success'>
-    <h5>Longueur = <?= $heightUtil ?> et Largeur = <?= $widthUtil ?></h5>
+    <h5>Longueur = <?= $heightUtil ?> & Largeur = <?= $widthUtil ?></h5>
 </div>
 <div class="row">
     <div class="col-6">
@@ -146,11 +275,13 @@ $rectangle_1 -> perimRectangle();
     </div>
     <div class="col-6">
         <div class='text-center mb-3 alert alert-success'>
-            <h5><?= "Périmètre du cercle = ".$rectangle_1 -> perimRectangle($widthUtil, $heightUtil) ?></h5>
+            <h5><?= "Périmètre = ".$rectangle_1 -> perimRectangle($widthUtil, $heightUtil) ?></h5>
         </div>
     </div>
 </div>
-
+<?php
+    }
+?>
 
 <!-- Question 4 : -->
 <hr>

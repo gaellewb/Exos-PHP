@@ -8,10 +8,10 @@ class Car {
 
 // SETTER et GETTER : méthodes d'objet, elles agient uniquement sur l'objet courant(désigné par $this)
 // Mutateur ou setter pour affecter une valeur à la propriété
-    public function setBrand () {
+    public function setBrand ($brand) {
         $this -> brand = $brand;
     }
-    public function setModel(){
+    public function setModel($model){
         $this -> model = $model;
     }
 
@@ -22,9 +22,7 @@ class Car {
     public function getModel (){
         return $this -> model;
     }
+} 
 
 
-
-
-}
 ?>
