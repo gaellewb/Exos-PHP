@@ -1,6 +1,6 @@
 <?php
-class Rectangle {
-
+class Rectangle 
+{
 // Création des attributs
     private $width ;
     private $height ;
@@ -31,12 +31,14 @@ public function width() {
 public function height() {
     $this -> height ;
 }
+
+// Par convention les noms des méthodes sont des verbes
 // Méthode pour calculer la surface : longueur * largeur
-    public function surface() {
+    public function calculerSurface() {
         return $surface = $this->width * $this->height ;
     }
 // Méthode pour calculer le périmètre : (longueur + largeur) * 2
-    public function perimRectangle() {
+    public function calculerPerimetreRectangle() {
         return $perimRectangle = ($this->width + $this->height) * 2 ;
     }
 

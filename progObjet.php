@@ -44,8 +44,8 @@ if (isset($_GET ['radiusUtile'])) {
     $radiusUtile = (int)$_GET['radiusUtile'];      
     $cercle_1 = new Circle(); 
     $cercle_1 -> setRadius ($radiusUtile = (int)$_GET['radiusUtile']);
-    $cercle_1 -> aireCercle();
-    $cercle_1 -> perimetreCercle();
+    $cercle_1 -> calculerAire();
+    $cercle_1 -> calculerPerimetreCercle();
     // dump($cercle_1);
 };
 ?>
@@ -59,12 +59,12 @@ if (isset($_GET ['radiusUtile'])) {
 <div class="row">
     <div class="col-6">
         <div class='text-center mb-3 alert alert-success'>
-            <h5><?= "Air du cercle = ".$cercle_1 -> aireCercle($radiusUtile) ?></h5>
+            <h5><?= "Air du cercle = ".$cercle_1 -> calculerAire($radiusUtile) ?></h5>
         </div>
     </div>
     <div class="col-6">
         <div class='text-center mb-3 alert alert-success'>
-            <h5><?= "Périmètre du cercle = ".$cercle_1 -> perimetreCercle($radiusUtile) ?></h5>
+            <h5><?= "Périmètre du cercle = ".$cercle_1 -> calculerPerimetreCercle($radiusUtile) ?></h5>
         </div>
     </div>
 </div>
@@ -90,7 +90,14 @@ if (isset($_GET ['radiusUtile'])) {
 
 <form action="progObjet.php" method="POST">
     <div class="text-center mb-3">
-        <label for="choixVoiture" name="choice"><h4>Choisissez votre véhicule :</h4></label>
+        <label for="choixVoiture" name="choice"><h4>Choisissez votre véhicule
+            <!-- , parmis les  -->
+            <?php 
+            // Car::getNombreVéhicules() 
+            ?> 
+            <!-- proposés  -->
+            :
+        </h4></label>
     </div>
     <div class="text-center mb-3">
         <input type="submit" name="choice1" class="btn btn-warning m-2" value="Véhicule n°1">
@@ -100,7 +107,6 @@ if (isset($_GET ['radiusUtile'])) {
         <input type="submit" name="choice5" class="btn btn-warning m-2" value="Véhicule n°5">
         <input type="submit" name="choice6" class="btn btn-warning m-2" value="Véhicule n°6">
     </div>
-    
 </form>
 
 <?php
@@ -254,8 +260,8 @@ if(isset($_POST ['widthUtil'])) {
 $rectangle_1 = new Rectangle();
 $rectangle_1 -> setHeight($heightUtil=(int)$_POST['heightUtil']); 
 $rectangle_1 -> setWidth($widthUtil=(int)$_POST['widthUtil']); 
-$rectangle_1 -> surface(); 
-$rectangle_1 -> perimRectangle();
+$rectangle_1 -> calculerSurface(); 
+$rectangle_1 -> calculerPerimetreRectangle();
 // dump($rectangle_1);
 }
 ?>
@@ -270,12 +276,12 @@ if(isset($_POST ['widthUtil'])) {
 <div class="row">
     <div class="col-6">
         <div class='text-center mb-3 alert alert-success'>
-            <h5><?= "Surface = ".$rectangle_1 -> surface($widthUtil, $heightUtil) ?></h5>
+            <h5><?= "Surface = ".$rectangle_1 -> calculerSurface($widthUtil, $heightUtil) ?></h5>
         </div>
     </div>
     <div class="col-6">
         <div class='text-center mb-3 alert alert-success'>
-            <h5><?= "Périmètre = ".$rectangle_1 -> perimRectangle($widthUtil, $heightUtil) ?></h5>
+            <h5><?= "Périmètre = ".$rectangle_1 -> calculerPerimetreRectangle($widthUtil, $heightUtil) ?></h5>
         </div>
     </div>
 </div>
@@ -285,7 +291,7 @@ if(isset($_POST ['widthUtil'])) {
 
 <!-- Question 4 : -->
 <hr>
-<div class='container mb-4 bg-secondary'>
+<div class='container mb-4 bg-light'>
     <h3 class='lead'>Exercice 4 :</h3>
     <p>Créez un fichier nommé Person.php contenant la classe Person avec les propriétés privées "name" et "age", ainsi que les méthodes suivantes : </p>
     <ul>
@@ -304,6 +310,92 @@ if(isset($_POST ['widthUtil'])) {
     </ul>
     <p>Créez un fichier nommé index.php pour tester la classe Person : Incluez le fichier Person.php dans index.php. Instanciez un objet de la classe Person. Utilisez les méthodes de l'objet pour définir le nom et l'âge de la personne. Affichez le nom et l'âge de la personne à l'aide des méthodes de l'objet. </p>
 </div>
+
+<?php
+$person_1 = new Person('Bruce', 68);
+$person_2 = new Person('Sylvester', 76);
+$person_3 = new Person('Arnold', 75);
+$person_4 = new Person('Jason', 55);
+$person_4 = new Person('Dwayne', 51);
+?>
+
+<form action="progObjet.php" method="POST">
+    <div class="text-center mb-3">
+        <label for="choixPersonne" name="choixPersonne"><h4>Choisissez une personne
+            <!-- , parmis les  -->
+            <?php 
+            // Person::getEffectif() 
+            ?> 
+            <!-- proposés  -->
+            :
+        </h4></label>
+    </div>
+
+    <div class="text-center mb-3">
+        <input type="submit" name="choix1" class="btn btn-info m-2" value="Personne n°1">
+        <input type="submit" name="choix2" class="btn btn-info m-2" value="Personne n°2">
+        <input type="submit" name="choix3" class="btn btn-info m-2" value="Personne n°3">
+        <input type="submit" name="choix4" class="btn btn-info m-2" value="Personne n°4">
+    </div>
+</form>
+
+<?php
+if(isset($_POST ['choix1'])) {
+?>
+<div class="card text-center m-5" style="width: 18rem;">
+    <div class="card-header">
+        <h5 class="card-title">Personne n°1</h5>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title"><?= $person_1->afficherNom() ?></h5>
+        <p class="card-text"><?= $person_1->afficherAge() ?></p>
+    </div>
+</div>
+<?php } ?>
+<?php
+if(isset($_POST ['choix2'])) {
+?>
+<div class="card text-center m-5" style="width: 18rem;">
+    <div class="card-header">
+        <h5 class="card-title">Personne n°2</h5>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title"><?= $person_2->afficherNom() ?></h5>
+        <p class="card-text"><?= $person_2->afficherAge() ?></p>
+    </div>
+</div>
+<?php } ?>
+<?php
+if(isset($_POST ['choix3'])) {
+?>
+<div class="card text-center m-5" style="width: 18rem;">
+    <div class="card-header">
+        <h5 class="card-title">Personne n°3</h5>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title"><?= $person_3->afficherNom() ?></h5>
+        <p class="card-text"><?= $person_3->afficherAge() ?></p>
+    </div>
+</div>
+<?php } ?>
+<?php
+if(isset($_POST ['choix4'])) {
+?>
+<div class="card text-center m-5" style="width: 18rem;">
+    <div class="card-header">
+        <h5 class="card-title">Personne n°4</h5>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title"><?= $person_4->afficherNom() ?></h5>
+        <p class="card-text"><?= $person_4->afficherAge() ?></p>
+    </div>
+</div>
+<?php } ?>
+
+
+
+
+
 
 
 
