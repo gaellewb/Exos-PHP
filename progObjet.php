@@ -242,12 +242,12 @@ if(isset($_POST ['choice6'])) {
 
 <form action="progObjet.php" method="POST">
     <div class='text-center mb-3'>
-        <label for="height" name="heightUtil" class="mb-2"><h5>Longueur :</h5></label>
-        <input type="text" name="heightUtil">
+        <label for="height" class="mb-2"><h5>Longueur :</h5></label>
+        <input type="int" name="height">
     </div>
     <div class='text-center mb-3'>
-        <label for="width" name="widthUtil" class="mb-2"><h5>Largeur :</h5></label>
-        <input type="text" name="widthUtil">
+        <label for="width" class="mb-2"><h5>Largeur :</h5></label>
+        <input type="int" name="width">
     </div>
     <div class='text-center mb-3'>
         <input type="submit" class="btn btn-primary" value="CALCUL">
@@ -255,37 +255,31 @@ if(isset($_POST ['choice6'])) {
 </form>
 
 <?php
-if(isset($_POST ['widthUtil'])) {
-//Instanciation = création d'un objet
-$rectangle_1 = new Rectangle();
-$rectangle_1 -> setHeight($heightUtil=(int)$_POST['heightUtil']); 
-$rectangle_1 -> setWidth($widthUtil=(int)$_POST['widthUtil']); 
-$rectangle_1 -> getCalculerSurface(); 
-$rectangle_1 -> getCalculerPerimetreRectangle();
+if(isset($_POST ['width']) && isset($_POST ['height'])) {
+$width = $_POST['width']; 
+$height = $_POST['height']; 
+
+$rectangle_1 = new Rectangle($width, $height);
 // dump($rectangle_1);
-}
 ?>
 
-<!-- Pas réussi à mettre le isset pour enlever le warning -->
-<?php
-if(isset($_POST ['widthUtil'])) {
-?>
 <div class='text-center mb-3 alert alert-success'>
-    <h5>Longueur = <?= $heightUtil ?> & Largeur = <?= $widthUtil ?></h5>
+    <h5>Longueur = <?= $height ?> & Largeur = <?= $width ?></h5>
 </div>
 <div class="row">
     <div class="col-6">
         <div class='text-center mb-3 alert alert-success'>
-            <h5><?= "Surface = ".$rectangle_1 -> getCalculerSurface($widthUtil, $heightUtil) ?></h5>
+            <h5><?= "Surface = ".$rectangle_1 -> getCalculerSurface() ?></h5>
         </div>
     </div>
     <div class="col-6">
         <div class='text-center mb-3 alert alert-success'>
-            <h5><?= "Périmètre = ".$rectangle_1 -> getCalculerPerimetreRectangle($widthUtil, $heightUtil) ?></h5>
+            <h5><?= "Périmètre = ".$rectangle_1 -> getCalculerPerimetreRectangle() ?></h5>
         </div>
     </div>
 </div>
 <?php
+// Fermeture du isset :
     }
 ?>
 

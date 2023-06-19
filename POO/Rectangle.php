@@ -6,11 +6,9 @@ class Rectangle
     private $height ;
 
 // Setters et Getters : Méthodes d'objet qui agissent uniquement sur l'objet courant.
-// Création des setters :
-    public function setWidth($width){
+// Création d'un construct' :
+    public function __construct($width, $height){
         $this->width = $width ;
-    }
-    public function setHeight($height){
         $this->height = $height ;
     }
 
@@ -24,11 +22,11 @@ class Rectangle
 
 // Méthode pour calculer la surface : longueur * largeur
     public function getCalculerSurface() {
-        return $surface = $this->width * $this->height ;
+        return $this->width * $this->height ;
     }
 // Méthode pour calculer le périmètre : (longueur + largeur) * 2
     public function getCalculerPerimetreRectangle() {
-        return $perimRectangle = ($this->width + $this->height) * 2 ;
+        return ($this->width + $this->height) * 2 ;
     }
 }
 
