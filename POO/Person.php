@@ -3,19 +3,18 @@ class Person
 {
     private $name ;
     private $age ;
-    // private static $effectif=0 ;
 
 public function __construct(string $name, int $age)
 {
     $this->name = strToUpper($name);
     $this->age = $age;
-    // self::$effectif++;
 }
 
-// public static function getEffectif(): int
-// {
-//     return self::$effectif ;
-// }
+// Je peux rajouter des setters pour le jour où je veux mettre à jour l'âge et pas le nom.
+public function setAge($age)
+{
+    $this->age =$age ;
+}
 
 public function afficherNom()
 {
@@ -26,4 +25,5 @@ public function afficherAge()
     echo "Age : ".$this->age. " ans" ;
 }
 }
+
 ?>

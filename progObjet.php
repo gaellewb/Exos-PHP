@@ -260,8 +260,8 @@ if(isset($_POST ['widthUtil'])) {
 $rectangle_1 = new Rectangle();
 $rectangle_1 -> setHeight($heightUtil=(int)$_POST['heightUtil']); 
 $rectangle_1 -> setWidth($widthUtil=(int)$_POST['widthUtil']); 
-$rectangle_1 -> calculerSurface(); 
-$rectangle_1 -> calculerPerimetreRectangle();
+$rectangle_1 -> getCalculerSurface(); 
+$rectangle_1 -> getCalculerPerimetreRectangle();
 // dump($rectangle_1);
 }
 ?>
@@ -276,12 +276,12 @@ if(isset($_POST ['widthUtil'])) {
 <div class="row">
     <div class="col-6">
         <div class='text-center mb-3 alert alert-success'>
-            <h5><?= "Surface = ".$rectangle_1 -> calculerSurface($widthUtil, $heightUtil) ?></h5>
+            <h5><?= "Surface = ".$rectangle_1 -> getCalculerSurface($widthUtil, $heightUtil) ?></h5>
         </div>
     </div>
     <div class="col-6">
         <div class='text-center mb-3 alert alert-success'>
-            <h5><?= "Périmètre = ".$rectangle_1 -> calculerPerimetreRectangle($widthUtil, $heightUtil) ?></h5>
+            <h5><?= "Périmètre = ".$rectangle_1 -> getCalculerPerimetreRectangle($widthUtil, $heightUtil) ?></h5>
         </div>
     </div>
 </div>
@@ -316,18 +316,13 @@ $person_1 = new Person('Bruce', 68);
 $person_2 = new Person('Sylvester', 76);
 $person_3 = new Person('Arnold', 75);
 $person_4 = new Person('Jason', 55);
-$person_4 = new Person('Dwayne', 51);
+// Exemple: je change l'âge de person_1
+$person_1 -> setAge(69);
 ?>
 
 <form action="progObjet.php" method="POST">
     <div class="text-center mb-3">
-        <label for="choixPersonne" name="choixPersonne"><h4>Choisissez une personne
-            <!-- , parmis les  -->
-            <?php 
-            // Person::getEffectif() 
-            ?> 
-            <!-- proposés  -->
-            :
+        <label for="choixPersonne" name="choixPersonne"><h4>Choisissez une personne :
         </h4></label>
     </div>
 
@@ -391,14 +386,6 @@ if(isset($_POST ['choix4'])) {
     </div>
 </div>
 <?php } ?>
-
-
-
-
-
-
-
-
 
 
 <?php require 'footer.php' ?>
